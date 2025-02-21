@@ -9,7 +9,7 @@ from PIL import Image
 # IMPORTANT: If you used joblib to save your models:
 import joblib
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__)
 
 app.secret_key = 'your_secret_key'  # change in production
 
@@ -104,24 +104,41 @@ def fertilizer_prediction():
             flash(str(e))
             return redirect(url_for('fertilizer_prediction'))
     return render_template('fertilizer_prediction.html')
-
+plant_disease_class_names = [
+    'Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rust', 
+    'Apple___healthy', 'Blueberry___healthy', 'Cherry___healthy', 
+    'Cherry___Powdery_mildew', 'Corn___Cercospora_leaf_spot Gray_leaf_spot', 
+    'Corn___Common_rust', 'Corn___Northern_Leaf_Blight', 'Corn___healthy', 
+    'Grape___Black_rot', 'Grape___Esca_(Black_Measles)', 'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)', 
+    'Grape___healthy', 'Orange___Haunglongbing_(Citrus_greening)', 'Peach___Bacterial_spot', 
+    'Peach___healthy', 'Pepper,_bell___Bacterial_spot', 'Pepper,_bell___healthy', 
+    'Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy', 
+    'Raspberry___healthy', 'Soybean___healthy', 'Squash___Powdery_mildew', 
+    'Strawberry___Leaf_scorch', 'Strawberry___healthy', 'Tomato___Bacterial_spot', 
+    'Tomato___Early_blight', 'Tomato___Late_blight', 'Tomato___Leaf_Mold', 
+    'Tomato___Septoria_leaf_spot', 'Tomato___Spider_mites Two-spotted_spider_mite', 
+    'Tomato___Target_Spot', 'Tomato___Tomato_Yellow_Leaf_Curl_Virus', 'Tomato___Tomato_mosaic_virus', 
+    'Tomato___healthy'
+]
 def predict_plant_disease(image_path):
     if not plant_disease_model:
         return "No plant disease model loaded."
     try:
-        image = Image.open(image_path).convert('RGB')
-        image = image.resize((224, 224))  # adjust if needed
-        img_array = np.array(image) / 255.0
-        img_array = np.expand_dims(img_array, axis=0)
+        # Open and preprocess the image
+        image_obj = Image.open(image_path).convert('RGB')
+        image_obj = image_obj.resize((224, 224))  # Adjust size as needed
+        img_array = np.array(image_obj) / 255.0  # Normalize to [0,1]
+        img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+        
+        # Make prediction
         preds = plant_disease_model.predict(img_array)
         class_idx = np.argmax(preds, axis=1)[0]
-        # If you have your own mapping from class_idx to disease names, define it:
-        # e.g. disease_mapping = {0: 'Early Blight', 1: 'Late Blight', ...}
-        disease_name = f"Disease class {class_idx}"
+        
+        # Map the numeric prediction to the disease name using the class names list
+        disease_name = plant_disease_class_names[class_idx]
         return disease_name
     except Exception as e:
         return f"Error in disease prediction: {str(e)}"
-
 # ---------------------------
 # Routes
 # ---------------------------

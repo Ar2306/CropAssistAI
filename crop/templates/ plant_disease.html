@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<h2>Plant Disease Detection</h2>
+<form
+  method="POST"
+  action="{{ url_for('plant_disease_detection') }}"
+  enctype="multipart/form-data"
+>
+  <label for="image">Upload Plant Image:</label>
+  <input type="file" name="image" accept="image/*" required /><br />
+  <button type="submit">Detect Disease</button>
+</form>
+
+{% if prediction %}
+<h3>Predicted Disease: {{ prediction }}</h3>
+{% if image_url %}
+<img src="{{ image_url }}" alt="Uploaded Image" width="300" />
+{% endif %} {% endif %} {% endblock %}

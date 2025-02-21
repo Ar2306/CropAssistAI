@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block content %}
+<h2>Fertilizer Prediction</h2>
+<form method="POST" action="{{ url_for('fertilizer_prediction') }}">
+  <label for="Temparature">Temperature:</label>
+  <input type="number" step="any" name="Temparature" required /><br />
+
+  <label for="Humidity">Humidity:</label>
+  <input type="number" step="any" name="Humidity" required /><br />
+
+  <label for="Moisture">Moisture:</label>
+  <input type="number" step="any" name="Moisture" required /><br />
+
+  <label for="Soil Type">Soil Type:</label>
+  <select name="Soil Type" required>
+    <option value="Sandy">Sandy</option>
+    <option value="Loamy">Loamy</option>
+    <option value="Black">Black</option>
+    <option value="Red">Red</option>
+    <option value="Clayey">Clayey</option></select
+  ><br />
+
+  <label for="Crop Type">Crop Type:</label>
+  <select name="Crop Type" required>
+    <option value="Maize">Maize</option>
+    <option value="Sugarcane">Sugarcane</option>
+    <option value="Cotton">Cotton</option>
+    <option value="Tobacco">Tobacco</option>
+    <option value="Paddy">Paddy</option></select
+  ><br />
+
+  <label for="Nitrogen">Nitrogen:</label>
+  <input type="number" step="any" name="Nitrogen" required /><br />
+
+  <label for="Potassium">Potassium:</label>
+  <input type="number" step="any" name="Potassium" required /><br />
+
+  <label for="Phosphorous">Phosphorous:</label>
+  <input type="number" step="any" name="Phosphorous" required /><br />
+
+  <button type="submit">Predict Fertilizer</button>
+</form>
+
+{% if prediction %}
+<h3>Predicted Fertilizer: {{ prediction }}</h3>
+{% endif %} {% endblock %}

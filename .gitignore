@@ -1,0 +1,53 @@
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore model files (if needed)
+models/
+mlmodels/
+*.pkl
+
+# Ignore hidden system files (macOS & Windows)
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore compiled files
+*.o
+*.out
+*.class
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore unnecessary hidden files
+._*
+
+# Ignore static cache files (if dynamically generated)
+static/images/
+static/css/
+static/js/
+
+# Ignore Flask session and cache
+instance/
+*.sqlite3
+
+# Ignore Git-related files
+.git/
+
+# Ignore uploaded files (if any)
+uploads/
+media/

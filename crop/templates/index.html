@@ -1,4 +1,117 @@
-{% extends "base.html" %} {% block content %}
-<h2>Welcome to CropAssistAI</h2>
-<p>This is your homepage content. Click the links above to navigate.</p>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CropAssistAI - Home</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Header / Navbar -->
+    <header class="header">
+      <div class="navbar">
+        <div class="logo">CropAssistAI</div>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li>
+              <a href="{{ url_for('crop_prediction') }}">Crop Prediction</a>
+            </li>
+            <li>
+              <a href="{{ url_for('fertilizer_prediction') }}"
+                >Fertilizer Prediction</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('plant_disease_detection') }}"
+                >Plant Disease Detection</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">Growing Tomorrow's Agriculture Today</h1>
+          <p class="hero-subtitle">
+            Revolutionizing farming with sustainable solutions and cutting-edge
+            technology.
+          </p>
+          <a href="{{ url_for('crop_prediction') }}" class="cta-button"
+            >Discover More</a
+          >
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features">
+        <h2>Why Choose CropAssistAI</h2>
+        <div class="feature-cards">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img
+                src="{{ url_for('static', filename='images/service-1.jpg') }}"
+                alt="Sustainable Farming"
+              />
+            </div>
+            <h3>Sustainable Farming</h3>
+            <p>Implementing eco-friendly practices for a better tomorrow.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img
+                src="{{ url_for('static', filename='images/service-2.jpg') }}"
+                alt="Smart Technology"
+              />
+            </div>
+            <h3>Smart Technology</h3>
+            <p>Advanced solutions for optimal crop management.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img
+                src="{{ url_for('static', filename='images/service-3.jpg') }}"
+                alt="Resource Efficiency"
+              />
+            </div>
+            <h3>Resource Efficiency</h3>
+            <p>Maximizing yields while minimizing resource usage.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services CTA Section -->
+      <section class="services-cta">
+        <h2>Our Services</h2>
+        <p>
+          Leverage our AI-driven tools to boost productivity and sustainability.
+        </p>
+        <div class="services-links">
+          <a href="{{ url_for('crop_prediction') }}" class="service-link"
+            >Crop Prediction</a
+          >
+          <a href="{{ url_for('fertilizer_prediction') }}" class="service-link"
+            >Fertilizer Prediction</a
+          >
+          <a
+            href="{{ url_for('plant_disease_detection') }}"
+            class="service-link"
+            >Plant Disease Detection</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 CropAssistAI. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,17 +1,74 @@
-{% extends "base.html" %} {% block content %}
-<h2>Plant Disease Detection</h2>
-<form
-  method="POST"
-  action="{{ url_for('plant_disease_detection') }}"
-  enctype="multipart/form-data"
->
-  <label for="image">Upload Plant Image:</label>
-  <input type="file" name="image" accept="image/*" required /><br />
-  <button type="submit">Detect Disease</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Plant Disease Detection - CropAssistAI</title>
+    <!-- Link to the updated stylesheet -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Header / Navbar -->
+    <header class="header">
+      <div class="navbar">
+        <div class="logo">CropAssistAI</div>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li>
+              <a href="{{ url_for('crop_prediction') }}">Crop Prediction</a>
+            </li>
+            <li>
+              <a href="{{ url_for('fertilizer_prediction') }}"
+                >Fertilizer Prediction</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('plant_disease_detection') }}"
+                >Plant Disease Detection</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-{% if prediction %}
-<h3>Predicted Disease: {{ prediction }}</h3>
-{% if image_url %}
-<img src="{{ image_url }}" alt="Uploaded Image" width="300" />
-{% endif %} {% endif %} {% endblock %}
+    <!-- Main Content -->
+    <main>
+      <section class="page-header">
+        <h2>Plant Disease Detection</h2>
+        <p>Identify common plant diseases and get instant results.</p>
+      </section>
+
+      <section class="form-section">
+        <form
+          method="POST"
+          action="{{ url_for('plant_disease_detection') }}"
+          enctype="multipart/form-data"
+          class="prediction-form"
+        >
+          <label for="image">Upload Plant Image:</label>
+          <input type="file" name="image" accept="image/*" required />
+          <button type="submit" class="cta-button">Detect Disease</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction-result fade-in">
+          <h3>Predicted Disease: {{ prediction }}</h3>
+        </div>
+        {% endif %} {% if image_url %}
+        <div class="uploaded-image fade-in">
+          <img src="{{ image_url }}" alt="Uploaded Plant Image" />
+        </div>
+        {% endif %}
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 CropAssistAI. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

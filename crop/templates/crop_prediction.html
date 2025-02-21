@@ -1,22 +1,81 @@
-{% extends "base.html" %} {% block content %}
-<h2>Crop Prediction</h2>
-<form method="POST" action="{{ url_for('crop_prediction') }}">
-  <label for="N">Nitrogen (N):</label>
-  <input type="number" step="any" name="N" required /><br />
-  <label for="P">Phosphorus (P):</label>
-  <input type="number" step="any" name="P" required /><br />
-  <label for="K">Potassium (K):</label>
-  <input type="number" step="any" name="K" required /><br />
-  <label for="temperature">Temperature:</label>
-  <input type="number" step="any" name="temperature" required /><br />
-  <label for="humidity">Humidity:</label>
-  <input type="number" step="any" name="humidity" required /><br />
-  <label for="ph">pH:</label>
-  <input type="number" step="any" name="ph" required /><br />
-  <label for="rainfall">Rainfall:</label>
-  <input type="number" step="any" name="rainfall" required /><br />
-  <button type="submit">Predict Crop</button>
-</form>
-{% if prediction %}
-<h3>Predicted Crop: {{ prediction }}</h3>
-{% endif %} {% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crop Prediction - CropAssistAI</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Header / Navbar -->
+    <header class="header">
+      <div class="navbar">
+        <div class="logo">CropAssistAI</div>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li>
+              <a href="{{ url_for('crop_prediction') }}">Crop Prediction</a>
+            </li>
+            <li>
+              <a href="{{ url_for('fertilizer_prediction') }}"
+                >Fertilizer Prediction</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('plant_disease_detection') }}"
+                >Plant Disease Detection</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section class="page-header">
+        <h2>Crop Prediction</h2>
+        <p>
+          Use our AI-driven system to find the best crop for your conditions.
+        </p>
+      </section>
+      <section class="form-section">
+        <form
+          method="POST"
+          action="{{ url_for('crop_prediction') }}"
+          class="prediction-form"
+        >
+          <label for="N">Nitrogen (N):</label>
+          <input type="number" step="any" name="N" required />
+          <label for="P">Phosphorus (P):</label>
+          <input type="number" step="any" name="P" required />
+          <label for="K">Potassium (K):</label>
+          <input type="number" step="any" name="K" required />
+          <label for="temperature">Temperature (°C):</label>
+          <input type="number" step="any" name="temperature" required />
+          <label for="humidity">Humidity (%):</label>
+          <input type="number" step="any" name="humidity" required />
+          <label for="ph">pH:</label>
+          <input type="number" step="any" name="ph" required />
+          <label for="rainfall">Rainfall (mm):</label>
+          <input type="number" step="any" name="rainfall" required />
+          <button type="submit" class="cta-button">Predict Crop</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction-result fade-in">
+          <h3>Recommended Crop: {{ prediction }}</h3>
+        </div>
+        {% endif %}
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 CropAssistAI. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

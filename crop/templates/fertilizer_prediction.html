@@ -1,45 +1,101 @@
-{% extends "base.html" %} {% block content %}
-<h2>Fertilizer Prediction</h2>
-<form method="POST" action="{{ url_for('fertilizer_prediction') }}">
-  <label for="Temparature">Temperature:</label>
-  <input type="number" step="any" name="Temparature" required /><br />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fertilizer Prediction - CropAssistAI</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Header / Navbar -->
+    <header class="header">
+      <div class="navbar">
+        <div class="logo">CropAssistAI</div>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li>
+              <a href="{{ url_for('crop_prediction') }}">Crop Prediction</a>
+            </li>
+            <li>
+              <a href="{{ url_for('fertilizer_prediction') }}"
+                >Fertilizer Prediction</a
+              >
+            </li>
+            <li>
+              <a href="{{ url_for('plant_disease_detection') }}"
+                >Plant Disease Detection</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-  <label for="Humidity">Humidity:</label>
-  <input type="number" step="any" name="Humidity" required /><br />
+    <!-- Main Content -->
+    <main>
+      <section class="page-header">
+        <h2>Fertilizer Prediction</h2>
+        <p>Optimize your fertilizer usage with AI-powered recommendations.</p>
+      </section>
+      <section class="form-section">
+        <form
+          method="POST"
+          action="{{ url_for('fertilizer_prediction') }}"
+          class="prediction-form"
+        >
+          <label for="Temparature">Temperature (°C):</label>
+          <input type="number" step="any" name="Temparature" required />
 
-  <label for="Moisture">Moisture:</label>
-  <input type="number" step="any" name="Moisture" required /><br />
+          <label for="Humidity">Humidity (%):</label>
+          <input type="number" step="any" name="Humidity" required />
 
-  <label for="Soil Type">Soil Type:</label>
-  <select name="Soil Type" required>
-    <option value="Sandy">Sandy</option>
-    <option value="Loamy">Loamy</option>
-    <option value="Black">Black</option>
-    <option value="Red">Red</option>
-    <option value="Clayey">Clayey</option></select
-  ><br />
+          <label for="Moisture">Moisture (%):</label>
+          <input type="number" step="any" name="Moisture" required />
 
-  <label for="Crop Type">Crop Type:</label>
-  <select name="Crop Type" required>
-    <option value="Maize">Maize</option>
-    <option value="Sugarcane">Sugarcane</option>
-    <option value="Cotton">Cotton</option>
-    <option value="Tobacco">Tobacco</option>
-    <option value="Paddy">Paddy</option></select
-  ><br />
+          <label for="Soil Type">Soil Type:</label>
+          <select name="Soil Type" required>
+            <option value="Sandy">Sandy</option>
+            <option value="Loamy">Loamy</option>
+            <option value="Black">Black</option>
+            <option value="Red">Red</option>
+            <option value="Clayey">Clayey</option>
+          </select>
 
-  <label for="Nitrogen">Nitrogen:</label>
-  <input type="number" step="any" name="Nitrogen" required /><br />
+          <label for="Crop Type">Crop Type:</label>
+          <select name="Crop Type" required>
+            <option value="Maize">Maize</option>
+            <option value="Sugarcane">Sugarcane</option>
+            <option value="Cotton">Cotton</option>
+            <option value="Tobacco">Tobacco</option>
+            <option value="Paddy">Paddy</option>
+          </select>
 
-  <label for="Potassium">Potassium:</label>
-  <input type="number" step="any" name="Potassium" required /><br />
+          <label for="Nitrogen">Nitrogen (N):</label>
+          <input type="number" step="any" name="Nitrogen" required />
 
-  <label for="Phosphorous">Phosphorous:</label>
-  <input type="number" step="any" name="Phosphorous" required /><br />
+          <label for="Potassium">Potassium (K):</label>
+          <input type="number" step="any" name="Potassium" required />
 
-  <button type="submit">Predict Fertilizer</button>
-</form>
+          <label for="Phosphorous">Phosphorous (P):</label>
+          <input type="number" step="any" name="Phosphorous" required />
 
-{% if prediction %}
-<h3>Predicted Fertilizer: {{ prediction }}</h3>
-{% endif %} {% endblock %}
+          <button type="submit" class="cta-button">Predict Fertilizer</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction-result fade-in">
+          <h3>Recommended Fertilizer: {{ prediction }}</h3>
+        </div>
+        {% endif %}
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 CropAssistAI. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

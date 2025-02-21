@@ -10,7 +10,6 @@ from PIL import Image
 import joblib
 
 app = Flask(__name__)
-
 app.secret_key = 'your_secret_key'  # change in production
 
 # Set up paths
@@ -120,6 +119,163 @@ plant_disease_class_names = [
     'Tomato___Target_Spot', 'Tomato___Tomato_Yellow_Leaf_Curl_Virus', 'Tomato___Tomato_mosaic_virus', 
     'Tomato___healthy'
 ]
+
+
+plant_disease_info = {
+    'Apple___Apple_scab': {
+         'description': "A fungal disease causing dark, scabby lesions on apple leaves and fruit.",
+         'recommended_fertilizer': "Use a balanced fertilizer combined with fungicide treatments."
+    },
+    'Apple___Black_rot': {
+         'description': "Causes decay and black lesions on apple fruit and leaves.",
+         'recommended_fertilizer': "Apply high-potassium fertilizer and ensure proper pruning."
+    },
+    'Apple___Cedar_apple_rust': {
+         'description': "A rust disease that affects apple trees in association with juniper trees.",
+         'recommended_fertilizer': "Use a balanced fertilizer and practice cultural methods to reduce humidity."
+    },
+    'Apple___healthy': {
+         'description': "The apple tree is healthy with no visible disease symptoms.",
+         'recommended_fertilizer': "Maintain balanced nutrition for optimal growth."
+    },
+    'Blueberry___healthy': {
+         'description': "The blueberry plant is healthy.",
+         'recommended_fertilizer': "Use an acidic fertilizer (e.g., ammonium sulfate) suitable for blueberries."
+    },
+    'Cherry___healthy': {
+         'description': "The cherry tree is healthy.",
+         'recommended_fertilizer': "Apply a balanced fertilizer with essential micronutrients."
+    },
+    'Cherry___Powdery_mildew': {
+         'description': "A fungal infection causing a white, powdery coating on leaves.",
+         'recommended_fertilizer': "Use balanced fertilizer and consider fungicides to control the disease."
+    },
+    'Corn___Cercospora_leaf_spot Gray_leaf_spot': {
+         'description': "Fungal disease causing gray spots on corn leaves.",
+         'recommended_fertilizer': "Apply nitrogen-rich fertilizer and follow proper crop rotation."
+    },
+    'Corn___Common_rust': {
+         'description': "Rust disease marked by reddish-brown pustules on corn leaves.",
+         'recommended_fertilizer': "Maintain balanced fertilizer and select resistant corn varieties."
+    },
+    'Corn___Northern_Leaf_Blight': {
+         'description': "A fungal disease causing elongated lesions on corn leaves.",
+         'recommended_fertilizer': "Use balanced fertilizer with an emphasis on potassium."
+    },
+    'Corn___healthy': {
+         'description': "The corn plant is healthy.",
+         'recommended_fertilizer': "Maintain balanced nutrition based on soil testing."
+    },
+    'Grape___Black_rot': {
+         'description': "A fungal disease that causes dark, decaying spots on grape clusters.",
+         'recommended_fertilizer': "Apply a balanced fertilizer and ensure proper canopy management."
+    },
+    'Grape___Esca_(Black_Measles)': {
+         'description': "A complex disease causing black measles on grapevines leading to decline.",
+         'recommended_fertilizer': "Use a phosphorus-rich fertilizer and manage irrigation properly."
+    },
+    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': {
+         'description': "A leaf spot disease causing defoliation in grapevines.",
+         'recommended_fertilizer': "Apply balanced fertilizer and fungicides if needed."
+    },
+    'Grape___healthy': {
+         'description': "The grapevine is healthy.",
+         'recommended_fertilizer': "Maintain balanced nutrition."
+    },
+    'Orange___Haunglongbing_(Citrus_greening)': {
+         'description': "A severe bacterial disease causing yellowing, stunted growth, and fruit drop in citrus.",
+         'recommended_fertilizer': "Use specialized citrus fertilizer with added micronutrients."
+    },
+    'Peach___Bacterial_spot': {
+         'description': "Bacterial spot causes dark spots on peach leaves and fruit.",
+         'recommended_fertilizer': "Apply balanced fertilizer and consider bactericides."
+    },
+    'Peach___healthy': {
+         'description': "The peach tree is healthy.",
+         'recommended_fertilizer': "Maintain balanced nutrition."
+    },
+    'Pepper,_bell___Bacterial_spot': {
+         'description': "Bacterial spot on bell peppers causes lesions on leaves and fruit.",
+         'recommended_fertilizer': "Use balanced fertilizer along with copper-based bactericides."
+    },
+    'Pepper,_bell___healthy': {
+         'description': "The bell pepper plant is healthy.",
+         'recommended_fertilizer': "Maintain balanced nutrition."
+    },
+    'Potato___Early_blight': {
+         'description': "A fungal disease that causes dark spots and defoliation on potato leaves.",
+         'recommended_fertilizer': "Use potassium-rich fertilizer and apply fungicides early."
+    },
+    'Potato___Late_blight': {
+         'description': "A severe disease that rapidly decays potato foliage and tubers.",
+         'recommended_fertilizer': "Apply balanced fertilizer and aggressive fungicide treatment."
+    },
+    'Potato___healthy': {
+         'description': "The potato plant is healthy.",
+         'recommended_fertilizer': "Maintain balanced nutrition based on soil tests."
+    },
+    'Raspberry___healthy': {
+         'description': "The raspberry plant is healthy.",
+         'recommended_fertilizer': "Apply balanced fertilizer with adequate potassium."
+    },
+    'Soybean___healthy': {
+         'description': "The soybean plant is healthy.",
+         'recommended_fertilizer': "Use balanced fertilizer; soybeans may benefit from phosphorus enrichment."
+    },
+    'Squash___Powdery_mildew': {
+         'description': "Powdery mildew causes a white, powdery coating on squash leaves.",
+         'recommended_fertilizer': "Use balanced fertilizer and appropriate fungicides."
+    },
+    'Strawberry___Leaf_scorch': {
+         'description': "Leaf scorch causes browning at the edges of strawberry leaves.",
+         'recommended_fertilizer': "Apply organic fertilizer and manage irrigation carefully."
+    },
+    'Strawberry___healthy': {
+         'description': "The strawberry plant is healthy.",
+         'recommended_fertilizer': "Maintain balanced, preferably organic, nutrition."
+    },
+    'Tomato___Bacterial_spot': {
+         'description': "Bacterial spot causes dark lesions on tomato leaves and fruit.",
+         'recommended_fertilizer': "Use balanced fertilizer with copper-based bactericides."
+    },
+    'Tomato___Early_blight': {
+         'description': "Early blight causes concentric lesions on tomato leaves.",
+         'recommended_fertilizer': "Apply balanced fertilizer with additional potassium."
+    },
+    'Tomato___Late_blight': {
+         'description': "Late blight is a devastating disease that rapidly decays tomato foliage.",
+         'recommended_fertilizer': "Use balanced fertilizer and aggressive fungicide applications."
+    },
+    'Tomato___Leaf_Mold': {
+         'description': "Leaf mold causes a moldy appearance on the underside of tomato leaves.",
+         'recommended_fertilizer': "Improve air circulation, and use balanced fertilizer."
+    },
+    'Tomato___Septoria_leaf_spot': {
+         'description': "Septoria leaf spot causes small, dark spots on tomato leaves.",
+         'recommended_fertilizer': "Maintain balanced fertilizer and proper watering practices."
+    },
+    'Tomato___Spider_mites Two-spotted_spider_mite': {
+         'description': "Spider mite infestations cause stippling and yellowing on tomato leaves.",
+         'recommended_fertilizer': "Maintain plant health with balanced fertilizer and consider miticides."
+    },
+    'Tomato___Target_Spot': {
+         'description': "Target spot produces target-like lesions on tomato leaves.",
+         'recommended_fertilizer': "Use balanced fertilizer and appropriate fungicide treatments."
+    },
+    'Tomato___Tomato_Yellow_Leaf_Curl_Virus': {
+         'description': "This virus causes yellowing and curling of tomato leaves.",
+         'recommended_fertilizer': "Focus on overall plant health; manage the virus through cultural practices."
+    },
+    'Tomato___Tomato_mosaic_virus': {
+         'description': "Tomato mosaic virus causes mosaic patterns and leaf distortion on tomatoes.",
+         'recommended_fertilizer': "Maintain balanced nutrition and remove severely infected plants."
+    },
+    'Tomato___healthy': {
+         'description': "The tomato plant is healthy.",
+         'recommended_fertilizer': "Maintain balanced nutrition."
+    }
+}
+
 def predict_plant_disease(image_path):
     if not plant_disease_model:
         return "No plant disease model loaded."
@@ -145,7 +301,7 @@ def predict_plant_disease(image_path):
 
 @app.route('/')
 def index():
-    return render_template('base.html')  # or an index.html that extends base.html
+    return render_template('index.html')  # or an index.html that extends base.html
 
 @app.route('/crop-prediction', methods=['GET', 'POST'])
 def crop_prediction():

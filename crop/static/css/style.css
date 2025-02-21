@@ -1,0 +1,330 @@
+/* 1. Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  color: #333;
+  background-color: #f8f9fa;
+  line-height: 1.6;
+}
+
+/* 2. Header / Navbar */
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c7a0b; /* a nice green */
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #2c7a0b;
+}
+
+/* 3. Hero Section */
+.hero {
+  background: url("../images/service1.jpg") center/cover no-repeat;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #2c7a0b;
+  color: #fff;
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #276005;
+}
+
+/* 4. Features Section */
+.features {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.features h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #2c7a0b;
+}
+
+.feature-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 320px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon img {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.5rem;
+  color: #2c7a0b;
+}
+
+/* 5. Services CTA Section */
+.services-cta {
+  background-color: #2c7a0b;
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.services-cta h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.services-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.services-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.service-link {
+  display: inline-block;
+  background-color: #fff;
+  color: #2c7a0b;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.service-link:hover {
+  background-color: #276005;
+  color: #fff;
+}
+
+/* 6. Page Headers (for subpages like Plant Disease Detection) */
+.page-header {
+  background-color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.page-header h2 {
+  font-size: 2.2rem;
+  color: #2c7a0b;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* 7. Forms (e.g., for Plant Disease Detection) */
+.form-section {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prediction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prediction-form label {
+  font-weight: 500;
+  color: #333;
+}
+
+.prediction-form input,
+.prediction-form select {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.prediction-form button {
+  background-color: #2c7a0b;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.prediction-form button:hover {
+  background-color: #276005;
+}
+
+/* 8. Prediction Result */
+.prediction-result {
+  margin-top: 20px;
+  background-color: #dff0d8;
+  border-left: 4px solid #2c7a0b;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.prediction-result h3 {
+  color: #2c7a0b;
+}
+
+/* 9. Uploaded Image Preview */
+.uploaded-image {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.uploaded-image img {
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 10. Footer */
+.footer {
+  background-color: #fff;
+  border-top: 1px solid #e2e2e2;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+/* 11. Animations */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 12. Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero {
+    height: 60vh;
+  }
+
+  .feature-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .services-links {
+    flex-direction: column;
+  }
+
+  .prediction-form {
+    gap: 0.8rem;
+  }
+
+  .page-header {
+    padding: 40px 20px;
+  }
+}

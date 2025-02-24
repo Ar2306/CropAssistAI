@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Crop Prediction - CropAssistAI</title>
+    <!-- Link to your main CSS -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
@@ -39,37 +40,117 @@
       <section class="page-header">
         <h2>Crop Prediction</h2>
         <p>
-          Use our AI-driven system to find the best crop for your conditions.
+          Discover the best crop for your soil and climate conditions using our
+          AI-powered system.
         </p>
       </section>
-      <section class="form-section">
-        <form
-          method="POST"
-          action="{{ url_for('crop_prediction') }}"
-          class="prediction-form"
-        >
-          <label for="N">Nitrogen (N):</label>
-          <input type="number" step="any" name="N" required />
-          <label for="P">Phosphorus (P):</label>
-          <input type="number" step="any" name="P" required />
-          <label for="K">Potassium (K):</label>
-          <input type="number" step="any" name="K" required />
-          <label for="temperature">Temperature (°C):</label>
-          <input type="number" step="any" name="temperature" required />
-          <label for="humidity">Humidity (%):</label>
-          <input type="number" step="any" name="humidity" required />
-          <label for="ph">pH:</label>
-          <input type="number" step="any" name="ph" required />
-          <label for="rainfall">Rainfall (mm):</label>
-          <input type="number" step="any" name="rainfall" required />
-          <button type="submit" class="cta-button">Predict Crop</button>
-        </form>
 
-        {% if prediction %}
-        <div class="prediction-result fade-in">
-          <h3>Recommended Crop: {{ prediction }}</h3>
+      <section class="form-section">
+        <!-- Two-column layout container (just like fertilizer) -->
+        <div class="prediction-layout">
+          <!-- Left Column: Form Container -->
+          <div class="prediction-form-container">
+            <form
+              method="POST"
+              action="{{ url_for('crop_prediction') }}"
+              class="prediction-form"
+            >
+              <div class="form-grid">
+                <!-- Row 1 -->
+                <div class="form-group">
+                  <label for="N">Nitrogen (N):</label>
+                  <input
+                    type="number"
+                    step="any"
+                    name="N"
+                    placeholder="e.g. 90"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="P">Phosphorus (P):</label>
+                  <input
+                    type="number"
+                    step="any"
+                    name="P"
+                    placeholder="e.g. 42"
+                    required
+                  />
+                </div>
+
+                <!-- Row 2 -->
+                <div class="form-group">
+                  <label for="K">Potassium (K):</label>
+                  <input
+                    type="number"
+                    step="any"
+                    name="K"
+                    placeholder="e.g. 43"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="temperature">Temperature (°C):</label>
+                  <input
+                    type="number"
+                    step="any"
+                    name="temperature"
+                    placeholder="e.g. 26.5"
+                    required
+                  />
+                </div>
+
+                <!-- Row 3 -->
+                <div class="form-group">
+                  <label for="humidity">Humidity (%):</label>
+                  <input
+                    type="number"
+                    step="any"
+                    name="humidity"
+                    placeholder="e.g. 80"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="ph">pH:</label>
+                  <input
+                    type="number"
+                    step="any"
+                    name="ph"
+                    placeholder="e.g. 6.5"
+                    required
+                  />
+                </div>
+
+                <!-- Row 4 -->
+                <div class="form-group">
+                  <label for="rainfall">Rainfall (mm):</label>
+                  <input
+                    type="number"
+                    step="any"
+                    name="rainfall"
+                    placeholder="e.g. 200"
+                    required
+                  />
+                </div>
+
+                <!-- Optional blank cell for symmetrical layout -->
+                <div class="form-group" style="visibility: hidden"></div>
+              </div>
+              <button type="submit" class="cta-button">Predict Crop</button>
+            </form>
+          </div>
+
+          <!-- Right Column: Result Card (if prediction exists) -->
+          {% if prediction %}
+          <div class="prediction-result-container fade-in">
+            <div class="result-card">
+              <h3>Recommended Crop:</h3>
+              <p>{{ prediction }}</p>
+            </div>
+          </div>
+          {% endif %}
         </div>
-        {% endif %}
       </section>
     </main>
 
@@ -77,5 +158,19 @@
     <footer class="footer">
       <p>© 2025 CropAssistAI. All rights reserved.</p>
     </footer>
+
+    <!-- Auto-scroll to the result if prediction is present -->
+    {% if prediction %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const resultCard = document.querySelector(
+          ".prediction-result-container"
+        );
+        if (resultCard) {
+          resultCard.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    </script>
+    {% endif %}
   </body>
 </html>

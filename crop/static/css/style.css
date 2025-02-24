@@ -16,6 +16,9 @@ body {
 .header {
   background-color: #fff;
   border-bottom: 1px solid #e2e2e2;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar {
@@ -24,13 +27,13 @@ body {
   align-items: center;
   max-width: 1140px;
   margin: 0 auto;
-  padding: 20px 30px;
+  padding: 15px 30px;
 }
 
 .logo {
   font-size: 1.8rem;
   font-weight: 600;
-  color: #2c7a0b; /* a nice green */
+  color: #2c7a0b; /* Primary Green */
 }
 
 .navbar ul {
@@ -39,14 +42,14 @@ body {
   gap: 2rem;
 }
 
-.navbar a {
+.navbar li a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-.navbar a:hover {
+.navbar li a:hover {
   color: #2c7a0b;
 }
 
@@ -69,7 +72,11 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  /* background: linear-gradient(
+    135deg,
+    rgba(44, 122, 11, 0.7),
+    rgba(44, 122, 11, 0.4)
+  ); */
 }
 
 .hero-content {
@@ -77,6 +84,7 @@ body {
   z-index: 1;
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .hero-title {
@@ -187,7 +195,7 @@ body {
   color: #fff;
 }
 
-/* 6. Page Headers (for subpages like Plant Disease Detection) */
+/* 6. Page Headers */
 .page-header {
   background-color: #fff;
   text-align: center;
@@ -208,9 +216,9 @@ body {
   color: #555;
 }
 
-/* 7. Forms (e.g., for Plant Disease Detection) */
+/* 7. Forms */
 .form-section {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto 40px;
   padding: 30px;
   background-color: #fff;
@@ -218,22 +226,57 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.prediction-form {
+/* Two-column layout for prediction pages */
+.prediction-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Form container */
+.prediction-form-container {
+  flex: 1 1 400px;
+}
+
+/* Result card container */
+.prediction-result-container {
+  flex: 1 1 300px;
+  margin-top: 1rem;
+}
+
+/* Grid layout for form fields */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+}
+
+.form-group {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
-.prediction-form label {
+.form-group label {
   font-weight: 500;
-  color: #333;
+  margin-bottom: 0.3rem;
 }
 
-.prediction-form input,
-.prediction-form select {
+.form-group input,
+.form-group select {
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+.prediction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 .prediction-form button {
@@ -243,6 +286,7 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
   transition: background-color 0.3s;
 }
 
@@ -250,17 +294,24 @@ body {
   background-color: #276005;
 }
 
-/* 8. Prediction Result */
-.prediction-result {
-  margin-top: 20px;
-  background-color: #dff0d8;
-  border-left: 4px solid #2c7a0b;
-  padding: 1rem;
+/* 8. Prediction Result (Result Card) */
+.result-card {
+  background-color: #eafae1;
+  border-left: 5px solid #2c7a0b;
+  padding: 1.2rem;
   border-radius: 4px;
+  text-align: center;
 }
 
-.prediction-result h3 {
+.result-card h3 {
   color: #2c7a0b;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.result-card p {
+  font-size: 1.1rem;
+  margin: 0;
 }
 
 /* 9. Uploaded Image Preview */
@@ -321,7 +372,15 @@ body {
   }
 
   .prediction-form {
-    gap: 0.8rem;
+    gap: 1rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prediction-layout {
+    flex-direction: column;
   }
 
   .page-header {

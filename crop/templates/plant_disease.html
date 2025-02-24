@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Plant Disease Detection - CropAssistAI</title>
-    <!-- Link to the updated stylesheet -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
   </head>
   <body>
-    <!-- Header / Navbar -->
+    <!-- Navbar omitted for brevity -->
     <header class="header">
       <div class="navbar">
         <div class="logo">CropAssistAI</div>
@@ -35,7 +34,6 @@
       </div>
     </header>
 
-    <!-- Main Content -->
     <main>
       <section class="page-header">
         <h2>Plant Disease Detection</h2>
@@ -54,9 +52,12 @@
           <button type="submit" class="cta-button">Detect Disease</button>
         </form>
 
-        {% if prediction %}
+        <!-- Use disease_name, disease_desc, recommended_fertilizer, image_url -->
+        {% if disease_name %}
         <div class="prediction-result fade-in">
-          <h3>Predicted Disease: {{ prediction }}</h3>
+          <h3>Predicted Disease: {{ disease_name }}</h3>
+          <p>Description: {{ disease_desc }}</p>
+          <p>Recommended Fertilizer: {{ recommended_fertilizer }}</p>
         </div>
         {% endif %} {% if image_url %}
         <div class="uploaded-image fade-in">
@@ -66,7 +67,6 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
       <p>© 2025 CropAssistAI. All rights reserved.</p>
     </footer>

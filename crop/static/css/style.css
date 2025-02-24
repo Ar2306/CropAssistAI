@@ -387,3 +387,41 @@ body {
     padding: 40px 20px;
   }
 }
+.scroll-arrow {
+  background: black;
+  border: none;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+.scroll-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  display: inline-block;
+  animation: bounce 2s infinite;
+  color: #fff; /* Match your hero text color if needed */
+  font-size: 2rem; /* Adjust icon size */
+}
+
+.scroll-arrow:hover {
+  color: #ccc; /* Slight hover effect */
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}

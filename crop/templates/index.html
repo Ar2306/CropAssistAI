@@ -3,9 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>CropAssistAI - Home</title>
+
+    <!-- Include your main CSS -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
+    <!-- Include Font Awesome (CDN example) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-someIntegrityHash"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
   </head>
   <body>
@@ -44,14 +55,20 @@
             Revolutionizing farming with sustainable solutions and cutting-edge
             technology.
           </p>
-          <a href="{{ url_for('crop_prediction') }}" class="cta-button"
-            >Discover More</a
+
+          <!-- Downward arrow button using Font Awesome -->
+          <button
+            class="scroll-arrow"
+            id="scroll-arrow"
+            aria-label="Scroll Down"
           >
+            <i class="fas fa-arrow-down" aria-hidden="true"></i>
+          </button>
         </div>
       </section>
 
-      <!-- Features Section -->
-      <section class="features">
+      <!-- Features Section (with an ID for scrolling) -->
+      <section class="features" id="features">
         <h2>Why Choose CropAssistAI</h2>
         <div class="feature-cards">
           <div class="feature-card">
@@ -113,5 +130,16 @@
     <footer class="footer">
       <p>© 2025 CropAssistAI. All rights reserved.</p>
     </footer>
+
+    <!-- Simple JS to scroll to the #features section -->
+    <script>
+      document
+        .getElementById("scroll-arrow")
+        .addEventListener("click", function () {
+          document
+            .getElementById("features")
+            .scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
   </body>
 </html>

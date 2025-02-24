@@ -9,7 +9,6 @@
     />
   </head>
   <body>
-    <!-- Navbar omitted for brevity -->
     <header class="header">
       <div class="navbar">
         <div class="logo">CropAssistAI</div>
@@ -37,7 +36,10 @@
     <main>
       <section class="page-header">
         <h2>Plant Disease Detection</h2>
-        <p>Identify common plant diseases and get instant results.</p>
+        <p>
+          Upload an image of your plant to detect potential diseases and receive
+          treatment recommendations.
+        </p>
       </section>
 
       <section class="form-section">
@@ -47,21 +49,32 @@
           enctype="multipart/form-data"
           class="prediction-form"
         >
-          <label for="image">Upload Plant Image:</label>
-          <input type="file" name="image" accept="image/*" required />
+          <div class="form-group">
+            <label for="image">Upload Plant Image:</label>
+            <input type="file" name="image" accept="image/*" required />
+          </div>
           <button type="submit" class="cta-button">Detect Disease</button>
         </form>
 
-        <!-- Use disease_name, disease_desc, recommended_fertilizer, image_url -->
         {% if disease_name %}
         <div class="prediction-result fade-in">
-          <h3>Predicted Disease: {{ disease_name }}</h3>
-          <p>Description: {{ disease_desc }}</p>
-          <p>Recommended Fertilizer: {{ recommended_fertilizer }}</p>
-        </div>
-        {% endif %} {% if image_url %}
-        <div class="uploaded-image fade-in">
-          <img src="{{ image_url }}" alt="Uploaded Plant Image" />
+          <h3>Detected Disease: {{ disease_name }}</h3>
+          <p><strong>Description:</strong> {{ disease_desc }}</p>
+          <p>
+            <strong>Fertilizer Recommendation:</strong> {{
+            recommended_fertilizer }}
+          </p>
+          {% if recommended_treatment %}
+          <p>
+            <strong>Treatment Recommendation:</strong> {{ recommended_treatment
+            }}
+          </p>
+          <p><strong>Usage Instructions:</strong> {{ usage_instructions }}</p>
+          {% endif %} {% if image_url %}
+          <div class="uploaded-image">
+            <img src="{{ image_url }}" alt="Uploaded Plant Image" />
+          </div>
+          {% endif %}
         </div>
         {% endif %}
       </section>
